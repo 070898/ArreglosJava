@@ -2,36 +2,36 @@
 Variacion de la busqueda binaria."""
 
 #Algoritmo sin recursión
-def interpolationSearch(a, x):
+
+def interpolationSearch (A, x):
 	lowerBound = 0
-	upperBound = len (a) -1
+	upperBound = len (A) -1
 	index = -1
-	part1 = (upperBound - lowerBound)
-	part2 = (int (a[upperBound]) - int (a[lowerBound]))
-	part3 = int (x) - int (a[lowerBound])
 	#Si el límite superior es menor que el inferior, no hay una solución factible. 
 	while lowerBound < upperBound:
-		middlePoint = int (lowerBound + (part1 / part2) * part3)
-		if x == a[middlePoint]:
-			#EL valor ha sido encontrado. 
+		middlePoint = lowerBound + ((upperBound-lowerBound)//(A[upperBound] - A[lowerBound])) * (x - A[lowerBound])
+		if x == A [middlePoint]:
+			 
 			index = middlePoint
 			break
-		elif x < a[middlePoint]:
+		elif x < A[middlePoint]:
 			upperBound = middlePoint -1
 		else:
 			lowerBound = middlePoint + 1
-	if lowerBound == upperBound and a[lowerBound] == x:
+	if lowerBound == upperBound and A[lowerBound] == x:
 		index = lowerBound
 	return index
 
-
 print ("Ingrese números: ")
-a = input()
+line = input()
+lista = line.split (",")
+entero = [] 
+for i in range(0, len(lista)): 
+	entero.append(int (lista[i]))
+
 print ("Ingrese número a buscar: ")
-x = input()
-list = a.split(",") #Se dividen los valores por comas y se guardan en una lista.
-indice = interpolationSearch(list, x) #Se guarda el valor de la función sin recursión.
-if (indice >= 0):
-	print ("El número está en el índice: ", indice, "\n")
+x = int (input())
+if (interpolationSearch(entero, x) != -1):
+	print ("El número está en el índice: ", interpolationSearch(enteros, x))
 else:
-	print ("El número no se encontró.\n")
+	print ("No se encontró el número.")
